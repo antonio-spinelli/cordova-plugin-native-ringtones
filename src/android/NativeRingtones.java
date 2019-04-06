@@ -81,6 +81,14 @@ public class NativeRingtones extends CordovaPlugin {
             ringtoneList.put(json);
         }
 
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        if (defaultSoundUri != null) {
+            JSONObject json = new JSONObject();
+            json.put("Name", "default");
+            json.put("Url", defaultSoundUri.toString());
+            ringtoneList.put(json);
+        }
+
         if (ringtoneList.length() > 0) {
             callbackContext.success(ringtoneList);
         } else {
